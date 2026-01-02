@@ -1,12 +1,39 @@
-document.getElementById("damageForm").onsubmit = e => {
+import { createClient } from
+"https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
+
+const supabase = createClient(
+  "https://apmmvovefgywogzcnvmr.supabase.co",
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFwbW12b3ZlZmd5d29nemNudm1yIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjczNDA4ODQsImV4cCI6MjA4MjkxNjg4NH0.B0KRW0-OoV_11E_ism4_3xwusP85syna3UMy3kZy3gU"
+);
+
+const form = document.getElementById("damageForm");
+const resultBox = document.getElementById("damageResult");
+
+form.addEventListener("submit", async e => {
   e.preventDefault();
 
+  const material = document.getElementById("material").value;
   const temp = Number(document.getElementById("temp").value);
-  let result = "No major damage mechanism";
+  const env = document.getElementById("env").value;
 
-  if (temp > 200) result = "High Temperature Sulfidation";
-  if (temp < 60) result = "CO₂ Corrosion";
+  const { data, error } = await supabase
+    .from("api571_rules")
+    .select("*")
+    .eq("material", material)
+    .eq("environment", env)
+    .lte("min_temp", temp)
+    .gt("max_temp", temp);
 
-  document.getElementById("damageResult").innerText =
-    "Possible Damage Mechanism: " + result;
-};
+  if (error || data.length === 0) {
+    resultBox.innerHTML =
+      "<b>No dominant damage mechanism found (API 571)</b>";
+    return;
+  }
+
+  resultBox.innerHTML = `
+    <h4>Possible Damage Mechanism(s)</h4>
+    <ul>
+      ${data.map(r => `<li>${r.damage}</li>`).join("")}
+    </ul>
+  `;
+});
