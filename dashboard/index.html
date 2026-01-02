@@ -21,23 +21,26 @@
     <input type="text" placeholder="Search..." />
 
     <div class="menu">
+      <!-- DAMAGE -->
       <button id="btn-damage">Damage Mechanism</button>
       <ul>
-        <li>Criteria of Finding Damage</li>
-        <li>Corrosion Rate Estimator</li>
-        <li>Representative Fluid</li>
-        <li>Inventory Calculator</li>
+        <li id="li-criteria">Criteria of Finding Damage</li>
+        <li id="li-corrosion">Corrosion Rate Estimator</li>
+        <li id="li-fluid">Representative Fluid</li>
+        <li id="li-inventory">Inventory Calculator</li>
       </ul>
 
+      <!-- THICKNESS -->
       <button id="btn-thickness">Thickness Analysis</button>
       <ul>
-        <li>Statistical Analysis</li>
+        <li id="li-stat">Statistical Analysis</li>
       </ul>
 
+      <!-- DESIGN -->
       <button id="btn-design">Design Thickness</button>
       <ul>
-        <li>Process Piping</li>
-        <li>Pressure Vessel</li>
+        <li id="li-piping">Process Piping</li>
+        <li id="li-vessel">Pressure Vessel</li>
       </ul>
     </div>
   </aside>
@@ -51,7 +54,7 @@
       <p>Damage Mechanism – RBI Methodology</p>
     </div>
 
-    <!-- DEFAULT SECTION -->
+    <!-- DEFAULT DASHBOARD -->
     <div id="section-default" class="section active">
       <div class="cards">
         <div class="card blue">
@@ -81,30 +84,87 @@
       </div>
     </div>
 
-    <!-- DAMAGE MECHANISM SECTION -->
+    <!-- ===== DAMAGE MECHANISM SECTIONS ===== -->
+
     <div id="section-damage" class="section">
       <h3>Damage Mechanism</h3>
-      <p>This section will contain API 571 damage mechanism logic.</p>
+      <p>Select a sub-feature from the sidebar.</p>
     </div>
 
-    <!-- THICKNESS ANALYSIS SECTION -->
+    <div id="section-criteria" class="section">
+      <h3>Criteria of Finding Damage (API 571)</h3>
+
+      <form id="damageForm">
+        <label>Material</label>
+        <select id="material">
+          <option>Carbon Steel</option>
+          <option>Low Alloy Steel</option>
+          <option>Stainless Steel</option>
+        </select>
+
+        <label>Operating Temperature (°C)</label>
+        <input type="number" id="temp" />
+
+        <label>Environment</label>
+        <select id="env">
+          <option>Wet H2S</option>
+          <option>CO₂</option>
+          <option>High Temperature Sulfidation</option>
+        </select>
+
+        <button type="submit">Find Damage Mechanism</button>
+      </form>
+
+      <div id="damageResult"></div>
+    </div>
+
+    <div id="section-corrosion" class="section">
+      <h3>Corrosion Rate Estimator</h3>
+      <p>API 581 corrosion equations will be implemented here.</p>
+    </div>
+
+    <div id="section-fluid" class="section">
+      <h3>Representative Fluid</h3>
+      <p>Fluid selection and properties database.</p>
+    </div>
+
+    <div id="section-inventory" class="section">
+      <h3>Inventory Calculator</h3>
+      <p>Mass & release calculations as per API 581.</p>
+    </div>
+
+    <!-- ===== THICKNESS ===== -->
+
     <div id="section-thickness" class="section">
       <h3>Thickness Analysis</h3>
-      <p>Statistical thickness analysis tools will be shown here.</p>
     </div>
 
-    <!-- DESIGN THICKNESS SECTION -->
+    <div id="section-stat" class="section">
+      <h3>Statistical Thickness Analysis</h3>
+      <p>Min / Avg / Corrosion allowance logic.</p>
+    </div>
+
+    <!-- ===== DESIGN ===== -->
+
     <div id="section-design" class="section">
       <h3>Design Thickness</h3>
-      <p>Design thickness calculations for piping and vessels.</p>
+    </div>
+
+    <div id="section-piping" class="section">
+      <h3>Process Piping Design Thickness</h3>
+    </div>
+
+    <div id="section-vessel" class="section">
+      <h3>Pressure Vessel Design Thickness</h3>
     </div>
 
   </main>
 </div>
 
-<!-- AUTH + SIDEBAR JS -->
+<!-- JS FILES -->
 <script type="module" src="dashboard-auth.js"></script>
 <script src="sidebar.js"></script>
+<script src="api571.js"></script>
 
 </body>
 </html>
