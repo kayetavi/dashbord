@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html> 
+<html>
 <head>
   <title>Login</title>
 </head>
@@ -7,13 +7,16 @@
 
 <h2>Login</h2>
 
-<input id="email" placeholder="Email"><br><br>
+<input id="email" type="email" placeholder="Email"><br><br>
 <input id="password" type="password" placeholder="Password"><br><br>
 
-<button onclick="login()">Login</button>
+<button id="loginBtn">Login</button>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
-<script src="auth.js"></script>
+<!-- ❌ YE LINE HATA DO -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script> -->
+
+<!-- ✅ YE MUST HAI -->
+<script type="module" src="auth.js"></script>
 
 </body>
 </html>
