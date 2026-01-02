@@ -151,3 +151,12 @@ body {
 .card.navy {
   background: linear-gradient(135deg, #0f172a, #020617);
 }
+
+.section {
+  display: none;
+  margin-top: 20px;
+}
+
+.section.active {
+  display: block;
+}
