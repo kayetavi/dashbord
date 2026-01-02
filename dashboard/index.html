@@ -9,7 +9,7 @@
 
 <!-- TOP HEADER -->
 <div class="topbar">
-  <div class="logo">Welcome <b id="userEmail"></b></div>
+  <div class="logo">Welcome <b id="userEmail">User</b></div>
   <button id="logoutBtn">Logout</button>
 </div>
 
@@ -21,7 +21,7 @@
     <input type="text" placeholder="Search..." />
 
     <div class="menu">
-      <button>Damage Mechanism</button>
+      <button id="btn-damage">Damage Mechanism</button>
       <ul>
         <li>Criteria of Finding Damage</li>
         <li>Corrosion Rate Estimator</li>
@@ -29,12 +29,12 @@
         <li>Inventory Calculator</li>
       </ul>
 
-      <button>Thickness Analysis</button>
+      <button id="btn-thickness">Thickness Analysis</button>
       <ul>
         <li>Statistical Analysis</li>
       </ul>
 
-      <button>Design Thickness</button>
+      <button id="btn-design">Design Thickness</button>
       <ul>
         <li>Process Piping</li>
         <li>Pressure Vessel</li>
@@ -45,43 +45,66 @@
   <!-- MAIN CONTENT -->
   <main class="content">
 
+    <!-- BANNER -->
     <div class="banner">
       <h2>API 571 / 581 Dashboard</h2>
       <p>Damage Mechanism – RBI Methodology</p>
     </div>
 
-    <div class="cards">
+    <!-- DEFAULT SECTION -->
+    <div id="section-default" class="section active">
+      <div class="cards">
+        <div class="card blue">
+          <h4>API 571</h4>
+          <p>Explore over 60 damage mechanisms affecting pressure equipment.</p>
+        </div>
 
-      <div class="card blue">
-        <h4>API 571</h4>
-        <p>Explore over 60 damage mechanisms affecting pressure equipment.</p>
+        <div class="card green">
+          <h4>API 581</h4>
+          <p>Calculate corrosion rates for CUI, CO₂, sulfidation.</p>
+        </div>
+
+        <div class="card purple">
+          <h4>Find Mechanism</h4>
+          <p>Identify potential damage mechanisms using smart rules.</p>
+        </div>
+
+        <div class="card navy">
+          <h4>Representative Fluids</h4>
+          <p>Built-in fluid library for risk and consequence analysis.</p>
+        </div>
+
+        <div class="card navy">
+          <h4>Inventory Calculator</h4>
+          <p>Estimate release mass and leak rates as per API 581.</p>
+        </div>
       </div>
+    </div>
 
-      <div class="card green">
-        <h4>API 581</h4>
-        <p>Calculate corrosion rates for CUI, CO₂, sulfidation.</p>
-      </div>
+    <!-- DAMAGE MECHANISM SECTION -->
+    <div id="section-damage" class="section">
+      <h3>Damage Mechanism</h3>
+      <p>This section will contain API 571 damage mechanism logic.</p>
+    </div>
 
-      <div class="card purple">
-        <h4>Find Mechanism</h4>
-        <p>Identify potential damage mechanisms using smart rules.</p>
-      </div>
+    <!-- THICKNESS ANALYSIS SECTION -->
+    <div id="section-thickness" class="section">
+      <h3>Thickness Analysis</h3>
+      <p>Statistical thickness analysis tools will be shown here.</p>
+    </div>
 
-      <div class="card navy">
-        <h4>Representative Fluids</h4>
-        <p>Built-in fluid library for risk and consequence analysis.</p>
-      </div>
-
-      <div class="card navy">
-        <h4>Inventory Calculator</h4>
-        <p>Estimate release mass and leak rates as per API 581.</p>
-      </div>
-
+    <!-- DESIGN THICKNESS SECTION -->
+    <div id="section-design" class="section">
+      <h3>Design Thickness</h3>
+      <p>Design thickness calculations for piping and vessels.</p>
     </div>
 
   </main>
 </div>
 
+<!-- AUTH + SIDEBAR JS -->
 <script type="module" src="dashboard-auth.js"></script>
+<script src="sidebar.js"></script>
+
 </body>
 </html>
