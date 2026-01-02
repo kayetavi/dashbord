@@ -18,6 +18,6 @@ document.getElementById("loginBtn").addEventListener("click", async () => {
     alert(error.message);
   } else {
     alert("Login successful");
-    window.location.href = "../dashboard/index.html";
+    window.location.href = "../dashboard/Index.html";
   }
 });
