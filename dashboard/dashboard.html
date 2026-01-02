@@ -1,1 +1,87 @@
-2
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>API 571 / 581 Dashboard</title>
+  <link rel="stylesheet" href="dashboard.css" />
+</head>
+<body>
+
+<!-- TOP HEADER -->
+<div class="topbar">
+  <div class="logo">Welcome <b id="userEmail"></b></div>
+  <button id="logoutBtn">Logout</button>
+</div>
+
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <h3>Features</h3>
+    <input type="text" placeholder="Search..." />
+
+    <div class="menu">
+      <button>Damage Mechanism</button>
+      <ul>
+        <li>Criteria of Finding Damage</li>
+        <li>Corrosion Rate Estimator</li>
+        <li>Representative Fluid</li>
+        <li>Inventory Calculator</li>
+      </ul>
+
+      <button>Thickness Analysis</button>
+      <ul>
+        <li>Statistical Analysis</li>
+      </ul>
+
+      <button>Design Thickness</button>
+      <ul>
+        <li>Process Piping</li>
+        <li>Pressure Vessel</li>
+      </ul>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="content">
+
+    <div class="banner">
+      <h2>API 571 / 581 Dashboard</h2>
+      <p>Damage Mechanism – RBI Methodology</p>
+    </div>
+
+    <div class="cards">
+
+      <div class="card blue">
+        <h4>API 571</h4>
+        <p>Explore over 60 damage mechanisms affecting pressure equipment.</p>
+      </div>
+
+      <div class="card green">
+        <h4>API 581</h4>
+        <p>Calculate corrosion rates for CUI, CO₂, sulfidation.</p>
+      </div>
+
+      <div class="card purple">
+        <h4>Find Mechanism</h4>
+        <p>Identify potential damage mechanisms using smart rules.</p>
+      </div>
+
+      <div class="card navy">
+        <h4>Representative Fluids</h4>
+        <p>Built-in fluid library for risk and consequence analysis.</p>
+      </div>
+
+      <div class="card navy">
+        <h4>Inventory Calculator</h4>
+        <p>Estimate release mass and leak rates as per API 581.</p>
+      </div>
+
+    </div>
+
+  </main>
+</div>
+
+<script type="module" src="dashboard-auth.js"></script>
+</body>
+</html>
