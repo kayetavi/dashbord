@@ -1,3 +1,5 @@
+
+
 import { createClient } from
 "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
 
@@ -9,22 +11,39 @@ const supabase = createClient(
 const form = document.getElementById("damageForm");
 const resultBox = document.getElementById("damageResult");
 
-form.addEventListener("submit", async e => {
+form.addEventListener("submit", async (e) => {
   e.preventDefault();
 
   const material = document.getElementById("material").value;
   const temp = Number(document.getElementById("temp").value);
-  const env = document.getElementById("env").value;
+
+  // ✅ NORMALIZE environment
+  const env = document
+    .getElementById("env")
+    .value
+    .replace("₂", "2")
+    .toUpperCase()
+    .trim();
 
   const { data, error } = await supabase
     .from("api571_rules")
     .select("*")
     .eq("material", material)
-    .eq("environment", env)
     .lte("min_temp", temp)
-    .gt("max_temp", temp);
+    .gte("max_temp", temp);
 
-  if (error || data.length === 0) {
+  if (error || !data || data.length === 0) {
+    resultBox.innerHTML =
+      "<b>No dominant damage mechanism found (API 571)</b>";
+    return;
+  }
+
+  // ✅ Environment partial match
+  const matches = data.filter(r =>
+    r.environment.toUpperCase().includes(env)
+  );
+
+  if (matches.length === 0) {
     resultBox.innerHTML =
       "<b>No dominant damage mechanism found (API 571)</b>";
     return;
@@ -33,7 +52,7 @@ form.addEventListener("submit", async e => {
   resultBox.innerHTML = `
     <h4>Possible Damage Mechanism(s)</h4>
     <ul>
-      ${data.map(r => `<li>${r.damage}</li>`).join("")}
+      ${matches.map(r => `<li>${r.damage}</li>`).join("")}
     </ul>
   `;
 });
