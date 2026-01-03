@@ -14,21 +14,17 @@ form.addEventListener("submit", async (e) => {
 
   const material = document.getElementById("material").value;
   const temp = Number(document.getElementById("temp").value);
-  const env = document.getElementById("env").value;
-
-  console.log("INPUT →", material, temp, env);
 
   const { data, error } = await supabase
     .from("api571_rules")
     .select("*")
     .eq("material", material)
-    .eq("environment", env)
     .lte("min_temp", temp)
     .gte("max_temp", temp);
 
-  console.log("SUPABASE RESULT →", data, error);
+  console.log("DATA →", data, error);
 
-  if (error || !data || data.length === 0) {
+  if (!data || data.length === 0) {
     resultBox.innerHTML =
       "<b>No dominant damage mechanism found (API 571)</b>";
     return;
@@ -37,7 +33,7 @@ form.addEventListener("submit", async (e) => {
   resultBox.innerHTML = `
     <h4>Possible Damage Mechanism(s)</h4>
     <ul>
-      ${data.map(r => `<li>${r.damage}</li>`).join("")}
+      ${data.map(r => `<li>${r.damage} (${r.environment})</li>`).join("")}
     </ul>
   `;
 });
