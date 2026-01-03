@@ -1,4 +1,3 @@
-
 import { createClient } from
 "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
 
@@ -17,13 +16,17 @@ form.addEventListener("submit", async (e) => {
   const temp = Number(document.getElementById("temp").value);
   const env = document.getElementById("env").value;
 
-  // ✅ STEP 1: Fetch ONLY by material + temperature
+  console.log("INPUT →", material, temp, env);
+
   const { data, error } = await supabase
     .from("api571_rules")
     .select("*")
     .eq("material", material)
+    .eq("environment", env)
     .lte("min_temp", temp)
     .gte("max_temp", temp);
+
+  console.log("SUPABASE RESULT →", data, error);
 
   if (error || !data || data.length === 0) {
     resultBox.innerHTML =
@@ -31,25 +34,10 @@ form.addEventListener("submit", async (e) => {
     return;
   }
 
-  // ✅ STEP 2: Normalize BOTH sides
-  const normalize = (str) =>
-    str.replace("₂", "2").toUpperCase().trim();
-
-  const matches = data.filter(
-    r => normalize(r.environment) === normalize(env)
-  );
-
-  if (matches.length === 0) {
-    resultBox.innerHTML =
-      "<b>No dominant damage mechanism found (API 571)</b>";
-    return;
-  }
-
-  // ✅ STEP 3: Show result
   resultBox.innerHTML = `
     <h4>Possible Damage Mechanism(s)</h4>
     <ul>
-      ${matches.map(r => `<li>${r.damage}</li>`).join("")}
+      ${data.map(r => `<li>${r.damage}</li>`).join("")}
     </ul>
   `;
 });
