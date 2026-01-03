@@ -1,3 +1,4 @@
+
 import { createClient } from
 "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
 
@@ -14,14 +15,9 @@ form.addEventListener("submit", async (e) => {
 
   const material = document.getElementById("material").value;
   const temp = Number(document.getElementById("temp").value);
+  const env = document.getElementById("env").value;
 
-  const env = document
-    .getElementById("env")
-    .value
-    .replace("₂", "2")
-    .toUpperCase()
-    .trim();
-
+  // ✅ STEP 1: Fetch ONLY by material + temperature
   const { data, error } = await supabase
     .from("api571_rules")
     .select("*")
@@ -35,8 +31,12 @@ form.addEventListener("submit", async (e) => {
     return;
   }
 
-  const matches = data.filter(r =>
-    r.environment.toUpperCase().includes(env)
+  // ✅ STEP 2: Normalize BOTH sides
+  const normalize = (str) =>
+    str.replace("₂", "2").toUpperCase().trim();
+
+  const matches = data.filter(
+    r => normalize(r.environment) === normalize(env)
   );
 
   if (matches.length === 0) {
@@ -45,6 +45,7 @@ form.addEventListener("submit", async (e) => {
     return;
   }
 
+  // ✅ STEP 3: Show result
   resultBox.innerHTML = `
     <h4>Possible Damage Mechanism(s)</h4>
     <ul>
