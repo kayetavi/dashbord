@@ -1,5 +1,3 @@
-
-
 import { createClient } from
 "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
 
@@ -17,7 +15,6 @@ form.addEventListener("submit", async (e) => {
   const material = document.getElementById("material").value;
   const temp = Number(document.getElementById("temp").value);
 
-  // ✅ NORMALIZE environment
   const env = document
     .getElementById("env")
     .value
@@ -38,7 +35,6 @@ form.addEventListener("submit", async (e) => {
     return;
   }
 
-  // ✅ Environment partial match
   const matches = data.filter(r =>
     r.environment.toUpperCase().includes(env)
   );
