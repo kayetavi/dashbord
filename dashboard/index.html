@@ -95,24 +95,27 @@
       <h3>Criteria of Finding Damage (API 571)</h3>
 
       <form id="damageForm">
-        <label>Material</label>
-        <select id="material">
-          <option>Carbon Steel</option>
-          <option>Low Alloy Steel</option>
-          <option>Stainless Steel</option>
-        </select>
+  <label>Material</label>
+  <select id="material">
+    <option>Carbon Steel</option>
+    <option>Low Alloy Steel</option>
+    <option>Stainless Steel</option>
+  </select>
 
-        <label>Operating Temperature (°C)</label>
-        <input type="number" id="temp" />
+  <label>Operating Temperature (°C)</label>
+  <!-- 🔴 YAHI LINE REPLACE KARNI HAI -->
+  <input type="number" id="temp" required />
 
-        <label>Environment</label>
-        <select id="env">
-          <option value="WET H2S">Wet H2S</option>
-          <option value="CO2">CO₂</option>
-          <option value="HIGH TEMPERATURE SULFIDATION">High Temperature Sulfidation</option>
-        </select>
+  <label>Environment</label>
+  <select id="env">
+    <option value="WET H2S">Wet H2S</option>
+    <option value="CO2">CO₂</option>
+    <option value="HIGH TEMPERATURE SULFIDATION">
+      High Temperature Sulfidation
+    </option>
+  </select>
 
-        <button type="submit">Find Damage Mechanism</button>
+  <button type="submit">Find Damage Mechanism</button>
       </form>
 
       <div id="damageResult"></div>
